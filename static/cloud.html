@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="云端资产：云端身份、交接单记录、交接单文件与云端 AI 交接要点整理。">
+  <title>云端资产 · 涉外急诊语言服务台</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/base.css?v=29">
+  <link rel="stylesheet" href="css/retro-skin.css?v=29">
+  <link rel="stylesheet" href="css/cloud.css?v=29">
+  <!-- 云服务 SDK：@dev 频道 IIFE 全局；不可达时由 cloud-client.js 回退到本地同源副本 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+  <script src="js/i18n-dict.js?v=29"></script>
+  <script src="js/i18n-labels.js?v=29"></script>
+  <script src="js/i18n.js?v=29"></script>
+</head>
+<body data-page="cloud" data-section="account">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main" class="page">
+    <div class="container cl-shell">
+      <header class="page-head cl-head">
+        <p class="cl-head__eyebrow">WORKBUDDY CLOUD · 云端资产</p>
+        <h1>云端资产与云端能力</h1>
+        <p class="cl-head__desc">
+          把站点已有的<strong>患者情况告知单</strong>接入真实云服务：用云端身份登录后，告知单可存入云数据库、
+          导出为交接单文件放进云存储，并可调用云端大模型整理便于医生阅读的交接要点。
+          云端身份与站内账号相互独立，原有术语、语料、翻译与问答功能不受影响；
+          告知单本身不翻译、不诊断、不评估表达质量。
+        </p>
+        <span class="badge badge--private">灰 · 我的资产</span>
+      </header>
+
+      <div class="cl-status" id="cl-status" role="status" aria-live="polite">
+        <span class="cl-status__dot" aria-hidden="true"></span>
+        <span class="cl-status__text" id="cl-status-text">正在连接云服务…</span>
+        <span class="cl-status__meta" id="cl-status-meta"></span>
+      </div>
+
+      <div class="cl-grid">
+        <!-- 01 云端身份 -->
+        <section class="cl-card" aria-labelledby="cl-auth-title">
+          <div class="cl-card__head">
+            <span class="cl-card__no mono">01</span>
+            <div>
+              <p class="cl-card__eyebrow">AUTH · 邮箱验证码</p>
+              <h2 class="cl-card__title" id="cl-auth-title">云端身份</h2>
+              <p class="cl-card__desc">注册与登录走云端身份，用于隔离每个人的交接单记录与文件。仅用一个邮箱 + 验证码，不设置密码。</p>
+            </div>
+          </div>
+
+          <div id="cl-auth-signed" hidden>
+            <div class="cl-identity">
+              <span class="cl-avatar" id="cl-avatar" aria-hidden="true">·</span>
+              <div>
+                <div class="cl-identity__name" id="cl-user-name">已登录</div>
+                <div class="cl-identity__id" id="cl-user-id"></div>
+              </div>
+            </div>
+            <button class="cl-btn" id="cl-signout" type="button">退出云端登录</button>
+          </div>
+
+          <div id="cl-auth-form">
+            <div class="cl-row">
+              <label class="cl-field"><span>邮箱</span>
+                <input class="cl-input" id="cl-email" type="email" autocomplete="email" placeholder="you@example.com">
+              </label>
+              <button class="cl-btn" id="cl-send-code" type="button">获取验证码</button>
+            </div>
+            <div class="cl-row">
+              <label class="cl-field"><span>验证码</span>
+                <input class="cl-input" id="cl-code" inputmode="numeric" autocomplete="one-time-code" placeholder="邮箱收到的 6 位验证码">
+              </label>
+              <button class="cl-btn cl-btn--primary" id="cl-verify" type="button">登录 / 注册</button>
+            </div>
+            <p class="cl-msg" id="cl-auth-msg" role="alert"></p>
+            <p class="cl-footnote">验证码只对本邮箱有效；输错时复用同一验证码重新提交，不会重复发码。</p>
+          </div>
+        </section>
+
+        <!-- 02 云数据库 -->
+        <section class="cl-card" aria-labelledby="cl-db-title">
+          <div class="cl-card__head">
+            <span class="cl-card__no mono">02</span>
+            <div>
+              <p class="cl-card__eyebrow">DATABASE · 用户隔离</p>
+              <h2 class="cl-card__title" id="cl-db-title">交接单记录</h2>
+              <p class="cl-card__desc">把「患者情况告知单」的主诉与全文写入云数据库；行级安全策略保证只能看到自己的记录，不含任何译文与质量评估。</p>
+            </div>
+          </div>
+          <div class="cl-gate" id="cl-db-gate">需要先在「01 云端身份」完成登录，才能保存与查看交接单记录。</div>
+          <div id="cl-db-body" hidden>
+            <div class="cl-row">
+              <label class="cl-field"><span>本次告知单</span>
+                <input class="cl-input" id="cl-record-title" placeholder="例如：胸部不适伴疼痛 · 问诊沟通">
+              </label>
+              <button class="cl-btn cl-btn--primary" id="cl-save-record" type="button">保存到云端</button>
+            </div>
+            <p class="cl-msg" id="cl-db-msg" role="alert"></p>
+            <ul class="cl-list" id="cl-record-list"></ul>
+          </div>
+        </section>
+
+        <!-- 03 云存储 -->
+        <section class="cl-card" aria-labelledby="cl-st-title">
+          <div class="cl-card__head">
+            <span class="cl-card__no mono">03</span>
+            <div>
+              <p class="cl-card__eyebrow">STORAGE · 私有文件</p>
+              <h2 class="cl-card__title" id="cl-st-title">交接单文件</h2>
+              <p class="cl-card__desc">把患者情况告知单导出为 JSON 文件上传到只属于自己的云存储路径，并通过短时效签名链接打开。</p>
+            </div>
+          </div>
+          <div class="cl-gate" id="cl-st-gate">需要先在「01 云端身份」完成登录，才能上传与读取交接单文件。</div>
+          <div id="cl-st-body" hidden>
+            <div class="cl-row">
+              <button class="cl-btn cl-btn--primary" id="cl-upload" type="button">上传本次报告</button>
+              <button class="cl-btn" id="cl-refresh-files" type="button">刷新列表</button>
+            </div>
+            <p class="cl-msg" id="cl-st-msg" role="alert"></p>
+            <ul class="cl-list" id="cl-file-list"></ul>
+          </div>
+        </section>
+
+        <!-- 04 云端大模型 -->
+        <section class="cl-card" aria-labelledby="cl-llm-title">
+          <div class="cl-card__head">
+            <span class="cl-card__no mono">04</span>
+            <div>
+              <p class="cl-card__eyebrow">LLM · 免密钥</p>
+              <h2 class="cl-card__title" id="cl-llm-title">交接要点整理</h2>
+              <p class="cl-card__desc">独立可选的云端工具：调用大模型把患者自述整理成便于医生阅读的交接要点。不评判表达质量、不做文化澄清、不翻译、不诊断；不属于「患者情况告知单」流程。</p>
+            </div>
+          </div>
+          <div class="cl-row">
+            <label class="cl-field"><span>模型</span>
+              <select class="cl-select" id="cl-model"><option value="">正在读取模型目录…</option></select>
+            </label>
+          </div>
+          <label class="cl-field" style="margin-bottom:12px"><span>患者自述</span>
+            <textarea class="cl-textarea" id="cl-llm-input" maxlength="1000" placeholder="例如：我这儿有点疼，脑袋也难受，已经好几天了"></textarea>
+          </label>
+          <div class="cl-row">
+            <button class="cl-btn cl-btn--primary" id="cl-llm-run" type="button">整理交接要点</button>
+            <button class="cl-btn cl-btn--danger" id="cl-llm-stop" type="button" disabled>停止生成</button>
+          </div>
+          <p class="cl-msg" id="cl-llm-msg" role="alert"></p>
+          <div class="cl-answer" id="cl-llm-answer" aria-live="polite">模型输出会显示在这里。</div>
+        </section>
+      </div>
+
+      <div class="cl-log" id="cl-log" aria-label="云服务调用日志">
+        <div class="cl-log__title">CLOUD CALL LOG · 仅记录结果，不含任何密钥与身份信息</div>
+        <div id="cl-log-lines"></div>
+      </div>
+
+      <p class="cl-footnote">
+        接入点：在 <a class="cl-link" href="check.html">患者情况告知单</a> 生成交接单后，
+        点「保存到云端」即可把主诉与全文带到这里。云端功能需在应用的发布域名下使用；
+        本地 127.0.0.1 预览时会出现明确的连接提示，不会静默降级。
+      </p>
+    </div>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <nav id="bottom-nav" class="bottom-nav" aria-label="底部导航"></nav>
+  <div id="toast-stack" class="toast-stack" role="status" aria-live="polite"></div>
+
+  <script defer src="js/app.js?v=29"></script>
+  <script defer src="js/cloud-config.js?v=29"></script>
+  <script defer src="js/cloud-client.js?v=29"></script>
+  <script defer src="js/cloud.js?v=29"></script>
+</body>
+</html>

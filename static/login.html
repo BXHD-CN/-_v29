@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="登录涉外急诊语言服务台，进入翻译、语言质量维护与可溯源问答。">
+  <title>登录 · 涉外急诊语言服务台</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/base.css?v=29">
+  <link rel="stylesheet" href="css/retro-skin.css?v=29">
+  <script src="js/i18n-dict.js?v=29"></script>
+  <script src="js/i18n-labels.js?v=29"></script>
+  <script src="js/i18n.js?v=29"></script>
+</head>
+<body data-page="login" data-section="home">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header" class="site-header"></header>
+  <main id="main" class="page">
+    <div class="container auth-shell">
+      <section class="card auth-card" aria-labelledby="login-title">
+        <h1 id="login-title">登录</h1>
+        <p class="auth-sub">注册并登录后，可使用翻译工作台、语言质量维护与「我的」私有库。</p>
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="login-account">邮箱或用户名</label>
+            <input id="login-account" name="account" type="text" autocomplete="username" placeholder="请输入邮箱或用户名" required>
+            <p class="field-error" id="err-account"></p>
+          </div>
+          <div class="field">
+            <label for="login-password">密码</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="请输入密码" required>
+            <p class="field-error" id="err-password"></p>
+          </div>
+          <div class="notice notice--error" id="login-error" role="alert" hidden></div>
+          <div class="notice notice--success" id="login-success" role="status" hidden></div>
+          <button class="btn btn--primary btn--block" id="login-submit" type="submit">登录</button>
+        </form>
+        <p class="auth-alt">还没有账号？<a href="register.html" id="register-link">注册一个</a></p>
+        <p class="auth-aside">登录态由 HttpOnly Cookie 维持；写操作使用 CSRF Token 双提交校验。</p>
+      </section>
+    </div>
+  </main>
+  <nav id="bottom-nav" class="bottom-nav" aria-label="底部导航"></nav>
+  <footer id="site-footer" class="site-footer"></footer>
+  <div id="toast-stack" class="toast-stack" role="status" aria-live="polite"></div>
+  <script src="js/app.js?v=29" defer></script>
+</body>
+</html>
