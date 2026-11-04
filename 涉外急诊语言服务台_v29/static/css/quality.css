@@ -1,0 +1,678 @@
+/* ============================================================
+   语言质量维护页（板块色 #7C3AED · 紫）
+   变量统一 ql- 前缀；不依赖 base.css 的类名，缺失时页面仍可用。
+   ============================================================ */
+
+:root {
+  --ql-purple: #7C3AED;
+  --ql-purple-dark: #6D28D9;
+  --ql-purple-soft: #F5F3FF;
+  --ql-purple-line: #DDD6FE;
+  --ql-text: #0F172A;
+  --ql-muted: #475569;
+  --ql-line: #E2E8F0;
+  --ql-bg: #F7F8FA;
+  --ql-card: #FFFFFF;
+  --ql-radius: 12px;
+  --ql-shadow: 0 1px 2px rgba(15, 23, 42, .06);
+  --ql-danger: #DC2626;
+  --ql-ok: #047857;
+  --ql-warn-bg: #FFFBEB;
+  --ql-warn-line: #FDE68A;
+  --ql-warn: #B45309;
+  --ql-info-bg: #F5F3FF;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ql-bg);
+  color: var(--ql-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ql-page {
+  border-top: 4px solid var(--ql-purple);
+  padding: 24px 16px 56px;
+  min-height: 60vh;
+}
+
+.ql-shell { width: 100%; max-width: 1320px; margin: 0 auto; }
+
+.ql-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- 页头 ---------- */
+.ql-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.ql-head__main { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+
+.ql-mark {
+  display: block;
+  width: 8px;
+  height: 40px;
+  margin-top: 4px;
+  border-radius: 4px;
+  background: var(--ql-purple);
+  flex: 0 0 auto;
+}
+
+.ql-head h1 { margin: 0; font-size: 28px; line-height: 1.25; }
+
+.ql-sub { margin: 4px 0 0; color: var(--ql-muted); font-size: 13px; }
+
+.ql-head__count { margin: 6px 0 0; color: var(--ql-muted); font-size: 13px; }
+
+/* ---------- Tab ---------- */
+.ql-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--ql-line);
+  margin: 12px 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ql-tabs::-webkit-scrollbar { display: none; }
+
+.ql-tab {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  border: 0;
+  background: transparent;
+  color: var(--ql-muted);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ql-tab:hover { color: var(--ql-purple-dark); }
+
+.ql-tab.is-active { color: var(--ql-purple-dark); font-weight: 600; }
+
+.ql-tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: var(--ql-purple);
+}
+
+.ql-tab:focus-visible { outline: 2px solid var(--ql-purple); outline-offset: -2px; }
+
+/* ---------- 工具条 ---------- */
+.ql-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--ql-card);
+  border: 1px solid var(--ql-line);
+  border-radius: var(--ql-radius);
+  box-shadow: var(--ql-shadow);
+}
+
+.ql-search { flex: 1 1 260px; min-width: 180px; }
+
+.ql-search input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--ql-line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: #fff;
+  color: var(--ql-text);
+}
+
+.ql-search input:focus-visible { outline: 2px solid var(--ql-purple); outline-offset: 1px; }
+
+.ql-scope {
+  display: inline-flex;
+  border: 1px solid var(--ql-purple-line);
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.ql-scope__btn {
+  border: 0;
+  background: #fff;
+  color: var(--ql-purple-dark);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ql-scope__btn + .ql-scope__btn { border-left: 1px solid var(--ql-purple-line); }
+.ql-scope__btn.is-active { background: var(--ql-purple); color: #fff; }
+.ql-scope__btn:focus-visible { outline: 2px solid var(--ql-purple); outline-offset: -2px; }
+
+.ql-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--ql-muted);
+  flex: 0 0 auto;
+}
+
+.ql-filter select {
+  height: 38px;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 0 8px;
+  border: 1px solid var(--ql-line);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ql-text);
+}
+
+.ql-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+
+/* ---------- 按钮 ---------- */
+.ql-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--ql-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ql-muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.ql-btn:hover:not(:disabled) {
+  border-color: var(--ql-purple-line);
+  background: var(--ql-purple-soft);
+  color: var(--ql-purple-dark);
+}
+
+.ql-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.ql-btn--primary {
+  background: var(--ql-purple);
+  border-color: var(--ql-purple);
+  color: #fff;
+  font-weight: 600;
+}
+
+.ql-btn--primary:hover:not(:disabled) { background: var(--ql-purple-dark); color: #fff; }
+
+.ql-btn--danger { border-color: #FCA5A5; color: var(--ql-danger); }
+.ql-btn--danger:hover:not(:disabled) { background: #FEF2F2; border-color: var(--ql-danger); color: var(--ql-danger); }
+
+.ql-btn--sm { min-height: 30px; padding: 0 10px; font-size: 12px; }
+
+.ql-btn:focus-visible { outline: 2px solid var(--ql-purple); outline-offset: 2px; }
+
+.ql-linkbtn {
+  border: 0;
+  background: none;
+  color: var(--ql-purple-dark);
+  font: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ---------- 提示条 ---------- */
+.ql-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border: 1px solid var(--ql-purple-line);
+  background: var(--ql-purple-soft);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ql-purple-dark);
+  overflow-wrap: anywhere;
+}
+
+.ql-banner.is-error { border-color: #FCA5A5; background: #FEF2F2; color: var(--ql-danger); }
+.ql-banner.is-ok { border-color: #6EE7B7; background: #ECFDF5; color: var(--ql-ok); }
+
+/* ---------- 主区：左列表 + 右详情 ---------- */
+.ql-body {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.ql-list {
+  background: var(--ql-card);
+  border: 1px solid var(--ql-line);
+  border-radius: var(--ql-radius);
+  box-shadow: var(--ql-shadow);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ql-list__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ql-line);
+  font-size: 12px;
+  color: var(--ql-muted);
+}
+
+.ql-list__scope {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--ql-purple-soft);
+  color: var(--ql-purple-dark);
+  border: 1px solid var(--ql-purple-line);
+  font-size: 11px;
+}
+
+.ql-items {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  max-height: min(62vh, 720px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ql-item {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ql-text);
+  font: inherit;
+}
+
+.ql-item:hover { background: #FAFAFF; border-color: var(--ql-purple-line); }
+.ql-item.is-active { background: var(--ql-purple-soft); border-color: var(--ql-purple-line); }
+.ql-item:focus-visible { outline: 2px solid var(--ql-purple); outline-offset: -2px; }
+
+.ql-item__zh {
+  display: block;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.ql-item__en {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ql-muted);
+  overflow-wrap: anywhere;
+}
+
+.ql-item__meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748B;
+}
+
+.ql-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: #475569;
+  font-size: 11px;
+  line-height: 18px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ql-tag--mine { background: var(--ql-purple-soft); color: var(--ql-purple-dark); }
+.ql-tag--warn { background: var(--ql-warn-bg); color: var(--ql-warn); border: 1px solid var(--ql-warn-line); }
+.ql-tag--ok { background: #ECFDF5; color: var(--ql-ok); }
+
+.ql-empty {
+  padding: 22px 14px;
+  text-align: center;
+  color: var(--ql-muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.ql-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--ql-line);
+  font-size: 12px;
+  color: var(--ql-muted);
+}
+
+.ql-pager__info { font-variant-numeric: tabular-nums; }
+
+/* ---------- 详情 ---------- */
+.ql-detail {
+  background: var(--ql-card);
+  border: 1px solid var(--ql-line);
+  border-radius: var(--ql-radius);
+  box-shadow: var(--ql-shadow);
+  min-width: 0;
+  min-height: 320px;
+  padding: 16px;
+}
+
+.ql-detail__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ql-back { display: none; }
+
+.ql-detail__badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--ql-purple-soft);
+  color: var(--ql-purple-dark);
+  font-size: 12px;
+}
+
+.ql-detail__empty { padding: 60px 20px; text-align: center; color: var(--ql-muted); }
+.ql-detail__empty p { margin: 0 0 6px; }
+.ql-detail__tip { font-size: 12px; color: #64748B; }
+
+.ql-detail__body { min-width: 0; }
+
+.ql-detail h2 {
+  margin: 0 0 2px;
+  font-size: 22px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.ql-detail h3 {
+  margin: 18px 0 8px;
+  font-size: 14px;
+  color: var(--ql-text);
+  padding-left: 8px;
+  border-left: 3px solid var(--ql-purple);
+}
+
+.ql-detail__sub {
+  margin: 0 0 10px;
+  color: var(--ql-muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.ql-detail__tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 12px; }
+
+.ql-fields {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid var(--ql-line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 0 12px;
+}
+
+.ql-fields dt,
+.ql-fields dd {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--ql-line);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ql-fields dt { background: #FAFAFC; color: var(--ql-muted); }
+.ql-fields dd { color: var(--ql-text); }
+.ql-fields dt:last-of-type, .ql-fields dd:last-of-type { border-bottom: 0; }
+
+.ql-def {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  background: #FAFAFC;
+  border: 1px solid var(--ql-line);
+  border-radius: 8px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.ql-rel {
+  border: 1px solid var(--ql-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #FCFBFF;
+}
+
+.ql-rel__item {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--ql-line);
+  font-size: 13px;
+}
+
+.ql-rel__item:last-child { border-bottom: 0; }
+.ql-rel__zh { color: var(--ql-text); overflow-wrap: anywhere; }
+.ql-rel__en { color: var(--ql-muted); font-size: 12px; overflow-wrap: anywhere; }
+.ql-rel__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+.ql-source {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ql-source a {
+  color: var(--ql-purple-dark);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+.ql-actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ql-line);
+}
+
+/* ---------- 表单 ---------- */
+.ql-form { display: flex; flex-direction: column; gap: 12px; }
+
+.ql-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+.ql-field label { font-size: 12px; color: var(--ql-muted); }
+
+.ql-field input,
+.ql-field select,
+.ql-field textarea {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid var(--ql-line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ql-text);
+  background: #fff;
+}
+
+.ql-field textarea { min-height: 84px; resize: vertical; line-height: 1.6; }
+
+.ql-field input:focus-visible,
+.ql-field select:focus-visible,
+.ql-field textarea:focus-visible {
+  outline: 2px solid var(--ql-purple);
+  outline-offset: 1px;
+}
+
+.ql-field__req { color: var(--ql-danger); margin-left: 2px; }
+
+.ql-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.ql-form__error {
+  margin: 0;
+  color: var(--ql-danger);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1200px) {
+  .ql-body { grid-template-columns: 340px minmax(0, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .ql-body { grid-template-columns: 1fr; }
+  .ql-items { max-height: 46vh; }
+  .ql-back { display: inline-flex; }
+  .ql-actions { margin-left: 0; }
+  /* 选中条目后切换到详情视图；返回按钮回到列表 */
+  .ql-body.is-detail .ql-list { display: none; }
+  .ql-body:not(.is-detail) .ql-detail { display: none; }
+}
+
+@media (max-width: 767px) {
+  .ql-page { padding: 16px 12px 48px; }
+  .ql-head h1 { font-size: 24px; }
+  .ql-toolbar { padding: 10px 12px; gap: 8px; }
+  .ql-search { flex: 1 1 100%; }
+  .ql-filter { flex: 1 1 40%; }
+  .ql-filter select { width: 100%; max-width: none; }
+  .ql-actions { width: 100%; }
+  .ql-actions .ql-btn { flex: 1 1 30%; }
+  .ql-fields { grid-template-columns: 1fr; }
+  .ql-fields dt { padding-bottom: 2px; border-bottom: 0; background: #FCFCFD; }
+  .ql-fields dd { padding-top: 2px; }
+  .ql-form__row { grid-template-columns: 1fr; }
+  .ql-detail { padding: 12px; }
+  .ql-tab { padding: 10px 12px; font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* 常驻动效不随系统「减少动态效果」关闭（业主明确要求）。 */
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   可读性增强：语言质量板块字号整体提升一档
+   ------------------------------------------------------------
+   原设计术语中文 14px / 英文 12px / 标签 11px，远距离与小屏下难辨。
+   这里集中放大，重点照顾「术语条目」与「详情字段」；
+   统一用 #main.ql-page 前缀提高特异性，避免被 retro-skin.css 中
+   body:not([data-page="index"]) .ql-btn 等规则覆盖；只调字号与控件尺寸，
+   不改栅格结构、间距体系与配色。
+   ============================================================ */
+#main.ql-page { font-size: 17px; }
+
+/* 术语条目：用户最需要看清的部分 */
+#main.ql-page .ql-item__zh { font-size: 20px; line-height: 1.4; }
+#main.ql-page .ql-item__en { font-size: 17px; line-height: 1.45; }
+#main.ql-page .ql-item__meta { font-size: 14px; }
+#main.ql-page .ql-tag { font-size: 14px; line-height: 22px; }
+
+/* 列表框架 */
+#main.ql-page .ql-list__head { font-size: 15px; }
+#main.ql-page .ql-list__scope { font-size: 14px; }
+#main.ql-page .ql-pager { font-size: 15px; }
+#main.ql-page .ql-empty { font-size: 16px; }
+
+/* 页头与分类标签 */
+#main.ql-page .ql-head h1 { font-size: 32px; }
+#main.ql-page .ql-sub { font-size: 16px; }
+#main.ql-page .ql-head__count { font-size: 16px; }
+#main.ql-page .ql-tab { font-size: 17px; }
+
+/* 工具条与筛选 */
+#main.ql-page .ql-search input { font-size: 17px; height: 44px; }
+#main.ql-page .ql-scope__btn { font-size: 16px; }
+#main.ql-page .ql-filter { font-size: 15px; }
+#main.ql-page .ql-filter select { font-size: 16px; height: 42px; }
+
+/* 按钮（皮肤层会覆盖 .ql-btn，这里用 id 前缀赢回来） */
+#main.ql-page .ql-btn { font-size: 16px; min-height: 42px; }
+#main.ql-page .ql-btn--sm { font-size: 15px; min-height: 36px; }
+#main.ql-page .ql-linkbtn { font-size: 16px; }
+
+/* 详情区 */
+#main.ql-page .ql-detail h2 { font-size: 28px; }
+#main.ql-page .ql-detail h3 { font-size: 18px; }
+#main.ql-page .ql-detail__sub { font-size: 18px; }
+#main.ql-page .ql-detail__badge { font-size: 15px; }
+#main.ql-page .ql-detail__tip { font-size: 15px; }
+#main.ql-page .ql-fields dt,
+#main.ql-page .ql-fields dd { font-size: 17px; padding: 10px 12px; }
+#main.ql-page .ql-def { font-size: 17px; }
+#main.ql-page .ql-rel__item { font-size: 17px; }
+#main.ql-page .ql-rel__en { font-size: 16px; }
+#main.ql-page .ql-source a { font-size: 17px; }
+
+/* 表单与提示 */
+#main.ql-page .ql-field label { font-size: 15px; }
+#main.ql-page .ql-field input,
+#main.ql-page .ql-field select,
+#main.ql-page .ql-field textarea { font-size: 17px; min-height: 44px; }
+#main.ql-page .ql-form__error { font-size: 15px; }
+#main.ql-page .ql-banner { font-size: 16px; }
+#main.ql-page .ql-note { font-size: 15px; }

@@ -1,0 +1,120 @@
+{"q":"预检分诊","expected_zh":"预检分诊","type":"中文精确"}
+{"q":"通道延误","expected_zh":"通道延误","type":"中文精确"}
+{"q":"麻醉史","expected_zh":"麻醉史","type":"中文精确"}
+{"q":"心前区","expected_zh":"心前区","type":"中文精确"}
+{"q":"动脉血氧饱和度","expected_zh":"动脉血氧饱和度","type":"中文精确"}
+{"q":"转运中生命体征","expected_zh":"转运中生命体征","type":"中文精确"}
+{"q":"声门上气道禁忌","expected_zh":"声门上气道禁忌","type":"中文精确"}
+{"q":"现场评估","expected_zh":"现场评估","type":"中文精确"}
+{"q":"颅内血肿清除","expected_zh":"颅内血肿清除","type":"中文精确"}
+{"q":"冠状动脉痉挛","expected_zh":"冠状动脉痉挛","type":"中文精确"}
+{"q":"毒蕈中毒","expected_zh":"毒蕈中毒","type":"中文精确"}
+{"q":"产程延长","expected_zh":"产程延长","type":"中文精确"}
+{"q":"约束并发症","expected_zh":"约束并发症","type":"中文精确"}
+{"q":"移植评估","expected_zh":"移植评估","type":"中文精确"}
+{"q":"双硫仑样反应","expected_zh":"双硫仑样反应","type":"中文精确"}
+{"q":"多重耐药菌株","expected_zh":"多重耐药菌株","type":"中文精确"}
+{"q":"出院评估","expected_zh":"出院评估","type":"中文精确"}
+{"q":"术后监护","expected_zh":"术后监护","type":"中文精确"}
+{"q":"空气隔离","expected_zh":"空气隔离","type":"中文精确"}
+{"q":"代谢综合征","expected_zh":"代谢综合征","type":"中文精确"}
+{"q":"secondary triage","expected_zh":"二次分诊","type":"英文精确"}
+{"q":"transfer approval","expected_zh":"转诊审批","type":"英文精确"}
+{"q":"previous infection","expected_zh":"既往感染史","type":"英文精确"}
+{"q":"abdominal breathing","expected_zh":"腹式呼吸","type":"英文精确"}
+{"q":"plethysmographic waveform","expected_zh":"血氧波形","type":"英文精确"}
+{"q":"transport adverse event","expected_zh":"转运不良事件","type":"英文精确"}
+{"q":"airway trauma","expected_zh":"气道损伤","type":"英文精确"}
+{"q":"prehospital handover","expected_zh":"院前交接","type":"英文精确"}
+{"q":"cerebral perfusion pressure","expected_zh":"脑灌注压","type":"英文精确"}
+{"q":"atrial fibrillation","expected_zh":"心房颤动","type":"英文精确"}
+{"q":"hemoperfusion","expected_zh":"血液灌流","type":"英文精确"}
+{"q":"transverse lie","expected_zh":"横位","type":"英文精确"}
+{"q":"restraint-related injury","expected_zh":"约束相关伤害","type":"英文精确"}
+{"q":"Ramadan","expected_zh":"斋月","type":"英文精确"}
+{"q":"contraindicated in pregnancy","expected_zh":"孕妇禁用","type":"英文精确"}
+{"q":"human immunodeficiency virus antibody","expected_zh":"人类免疫缺陷病毒抗体","type":"英文精确"}
+{"q":"medical certificate of diagnosis","expected_zh":"诊断证明书","type":"英文精确"}
+{"q":"resumption of oral intake","expected_zh":"术后进食","type":"英文精确"}
+{"q":"bloodborne pathogen","expected_zh":"血源性病原体","type":"英文精确"}
+{"q":"opioid dependence","expected_zh":"阿片类依赖","type":"英文精确"}
+{"q":"病人喘不上气，血氧一直往下掉","expected_zh":"呼吸困难","type":"自然语言"}
+{"q":"心跳突然停了，怎么按压","expected_zh":"心肺复苏","type":"自然语言"}
+{"q":"车祸后小腿骨头断了，一直流血","expected_zh":"骨折固定","type":"自然语言"}
+{"q":"打完针手背鼓起来一块","expected_zh":"液体外渗","type":"自然语言"}
+{"q":"吃药后全身起红疹","expected_zh":"药物过敏","type":"自然语言"}
+{"q":"孩子发烧抽风","expected_zh":"热性惊厥","type":"自然语言"}
+{"q":"产妇生完孩子出血不停","expected_zh":"产后出血","type":"自然语言"}
+{"q":"病人说不想活了，怎么问","expected_zh":"自杀风险评估","type":"自然语言"}
+{"q":"家属求我们别告诉病人是癌症","expected_zh":"坏消息告知","type":"自然语言"}
+{"q":"病人不肯签手术同意书","expected_zh":"知情同意","type":"自然语言"}
+{"q":"外国游客没带护照怎么挂号","expected_zh":"外籍患者","type":"自然语言"}
+{"q":"病人说胸口像压了石头","expected_zh":"胸痛","type":"自然语言"}
+{"q":"血压80/50，手脚冰凉","expected_zh":"休克","type":"自然语言"}
+{"q":"叫不醒，怎么判断昏迷深浅","expected_zh":"格拉斯哥昏迷评分","type":"自然语言"}
+{"q":"这个药片能掰开吃吗","expected_zh":"缓释片","type":"自然语言"}
+{"q":"病人是穆斯林，正在斋月","expected_zh":"斋月","type":"自然语言"}
+{"q":"病人说身上有虫，别人看不见","expected_zh":"幻觉","type":"自然语言"}
+{"q":"医生把剂量开大了","expected_zh":"给药错误","type":"自然语言"}
+{"q":"住院太贵，病人想自己回家","expected_zh":"自动出院","type":"自然语言"}
+{"q":"这里治不了，要转上级医院","expected_zh":"转诊","type":"自然语言"}
+{"q":"和外国病人语言不通怎么办","expected_zh":"语言障碍","type":"自然语言"}
+{"q":"人没了，家属要把遗体运回国","expected_zh":"遗体跨境转运","type":"自然语言"}
+{"q":"病人只吃素，不吃肉","expected_zh":"素食","type":"自然语言"}
+{"q":"管子插进去，怎么确定在气管里","expected_zh":"插管确认","type":"自然语言"}
+{"q":"被蛇咬了，怎么处理","expected_zh":"毒蛇咬伤","type":"自然语言"}
+{"q":"除颤用多少焦耳","expected_zh":"除颤能量","type":"自然语言"}
+{"q":"老人突然半边身子动不了，说话不清","expected_zh":"脑卒中","type":"自然语言"}
+{"q":"高烧40度，人迷迷糊糊","expected_zh":"高热","type":"自然语言"}
+{"q":"烧伤面积怎么估算","expected_zh":"烧伤面积","type":"自然语言"}
+{"q":"病人被东西噎住，说不出话","expected_zh":"气道异物","type":"自然语言"}
+{"q":"how do I confirm the tube is in the trachea","expected_zh":"插管确认","type":"跨语言"}
+{"q":"crushing chest pain like a heavy weight","expected_zh":"胸痛","type":"跨语言"}
+{"q":"blood pressure is 80 over 50 and the limbs are cold","expected_zh":"休克","type":"跨语言"}
+{"q":"what energy setting should I use for defibrillation","expected_zh":"除颤能量","type":"跨语言"}
+{"q":"the patient cannot breathe and oxygen saturation is falling","expected_zh":"呼吸困难","type":"跨语言"}
+{"q":"the family asks us not to tell the patient it is cancer","expected_zh":"坏消息告知","type":"跨语言"}
+{"q":"the patient refuses to sign the surgical consent form","expected_zh":"知情同意","type":"跨语言"}
+{"q":"how should I prioritise patients by urgency at the door","expected_zh":"预检分诊","type":"跨语言"}
+{"q":"a foreign patient has no passport, how do we register him","expected_zh":"外籍患者","type":"跨语言"}
+{"q":"the patient developed a rash after taking the drug","expected_zh":"药物过敏","type":"跨语言"}
+{"q":"heavy bleeding after delivery","expected_zh":"产后出血","type":"跨语言"}
+{"q":"a child with fever and convulsions","expected_zh":"热性惊厥","type":"跨语言"}
+{"q":"how to assess suicide risk","expected_zh":"自杀风险评估","type":"跨语言"}
+{"q":"how to estimate the burn surface area","expected_zh":"烧伤面积","type":"跨语言"}
+{"q":"suspected tension pneumothorax, what should I do","expected_zh":"张力性气胸","type":"跨语言"}
+{"q":"suspected cervical spine injury after a crash","expected_zh":"颈椎损伤","type":"跨语言"}
+{"q":"the family wants to donate organs","expected_zh":"器官捐献","type":"跨语言"}
+{"q":"consular notification for a foreign patient","expected_zh":"领事通知","type":"跨语言"}
+{"q":"how is brain death determined","expected_zh":"脑死亡","type":"跨语言"}
+{"q":"we need an interpreter for this patient","expected_zh":"语言障碍","type":"跨语言"}
+{"q":"phân loại sàng lọc","expected_zh":"预检分诊","type":"本地语"}
+{"q":"hỗ trợ sự sống cơ bản","expected_zh":"基础生命支持","type":"本地语"}
+{"q":"nắn chỉnh bằng tay","expected_zh":"手法复位","type":"本地语"}
+{"q":"thận trọng","expected_zh":"慎用","type":"本地语"}
+{"q":"คัดแยกผู้ป่วย","expected_zh":"预检分诊","type":"本地语"}
+{"q":"การจัดการทางเดินหายใจ","expected_zh":"气道管理","type":"本地语"}
+{"q":"ปูนปลาสเตอร์","expected_zh":"石膏","type":"本地语"}
+{"q":"ความร่วมมือในการใช้ยา","expected_zh":"依从性","type":"本地语"}
+{"q":"triase","expected_zh":"预检分诊","type":"本地语"}
+{"q":"kompresi dada","expected_zh":"胸外按压","type":"本地语"}
+{"q":"kolar servikal","expected_zh":"颈托","type":"本地语"}
+{"q":"penjelasan cara minum obat","expected_zh":"用药交代","type":"本地语"}
+{"q":"triaj","expected_zh":"预检分诊","type":"本地语"}
+{"q":"atropin","expected_zh":"阿托品","type":"本地语"}
+{"q":"kanula hidung aliran tinggi","expected_zh":"高流量鼻导管","type":"本地语"}
+{"q":"心博骤停","expected_zh":"心搏骤停","type":"错别字"}
+{"q":"气官插管","expected_zh":"气管插管","type":"错别字"}
+{"q":"知请同意","expected_zh":"知情同意","type":"错别字"}
+{"q":"休刻","expected_zh":"休克","type":"错别字"}
+{"q":"呼息困难","expected_zh":"呼吸困难","type":"错别字"}
+{"q":"低血搪","expected_zh":"低血糖","type":"错别字"}
+{"q":"脑水种","expected_zh":"脑水肿","type":"错别字"}
+{"q":"破伤风抗毒书","expected_zh":"破伤风抗毒素","type":"错别字"}
+{"q":"CPR","expected_zh":"心肺复苏","type":"缩写"}
+{"q":"GCS","expected_zh":"格拉斯哥昏迷评分","type":"缩写"}
+{"q":"ACS","expected_zh":"急性冠脉综合征","type":"缩写"}
+{"q":"DKA","expected_zh":"糖尿病酮症酸中毒","type":"缩写"}
+{"q":"ARDS","expected_zh":"急性呼吸窘迫综合征","type":"缩写"}
+{"q":"COPD","expected_zh":"慢性阻塞性肺疾病","type":"缩写"}
+{"q":"POCUS","expected_zh":"床旁超声","type":"缩写"}

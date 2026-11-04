@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "涉外急诊术语语料库 · Function Calling 工具集",
+  "description": "面向大模型的 3 个检索工具，底层对应 work/vector_db/api_server.py 的 /search 与 /compare 接口。适用于 OpenAI tools / Anthropic tools / 兼容 function calling 的任意框架。",
+  "served_by": "work/vector_db/api_server.py（默认 http://127.0.0.1:8848）",
+  "tools": [
+    {
+      "name": "search_terms",
+      "description": "检索【术语表】（term 源，4154 条中英术语）。当用户询问某个医学/法律/领事概念的标准中英说法、需要确认术语译名、或要判断某译法是否规范时调用。返回按相关度排序的术语条目，每条含 doc_id、中文、英文、领域、场景。不要用它找整句例句（用 search_corpus）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "检索词。优先用中文术语或英文术语的精确写法（如「预检分诊」「triage」）；自然语言长句会显著降低命中率，请先改写为关键词。",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "k": {
+            "type": "integer",
+            "description": "返回条数，默认 8。术语确认一般 3-5 条足够，翻译对照可用 8-10 条。",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 8
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "search_corpus",
+      "description": "检索【双语例句】（corpus 源，8308 条中英对照句对）。当用户需要看某术语在真实急诊场景中的用法、需要中英对照例句、或要确认某句话在临床现场怎么说时调用。返回句对及其父术语 doc_id（parent 字段），便于回溯术语条目。不要用它确认术语标准译名（用 search_terms）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "检索词或短句。可以是术语（如「知情同意」）、场景短语（如「分诊台 等候」）或英文片段（如「informed consent」）。",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "k": {
+            "type": "integer",
+            "description": "返回条数，默认 8。",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 8
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "compare_translations",
+      "description": "对比同一概念在【五类来源】中的不同说法：term（术语表）、corpus（例句）、culture（文化负载词）、local（东盟本地语）、real（真实语料）。当用户问「这个词有几种译法」「术语表和例句里的说法一致吗」「东盟本地语和标准英文怎么对应」时调用。返回按来源分组的结果，可直接用于译法一致性核查。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "要对比的概念，用中文或英文术语（如「预检分诊」「预检分诊 / triage」）。不要传整句。",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "k": {
+            "type": "integer",
+            "description": "每个来源各返回多少条，默认 5。对比时 3-5 条通常足够。",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "result_contract": {
+    "search_terms / search_corpus": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "k": {
+          "type": "integer"
+        },
+        "source": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "description": "混合打分，>1 表示命中精确匹配加成，仅用于相对排序，不要当作概率"
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "term",
+                  "corpus",
+                  "culture",
+                  "local",
+                  "real"
+                ]
+              },
+              "doc_id": {
+                "type": "string",
+                "description": "引用时必须原样写出的唯一标识"
+              },
+              "zh": {
+                "type": "string"
+              },
+              "en": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              },
+              "scene": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string",
+                "description": "例句所属术语的 doc_id；术语条目为空"
+              }
+            }
+          }
+        }
+      }
+    },
+    "compare_translations": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "k": {
+          "type": "integer"
+        },
+        "groups": {
+          "type": "object",
+          "description": "键为 term/corpus/culture/local/real，值为该来源的结果数组（结构同上）"
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "usage_rules": [
+    "回答中引用任何条目时必须写出 doc_id 与 source，例如：预检分诊（term-T-0001，术语表）。",
+    "一次最多调用 2 个工具、总量不超过 3 次；不要为同一个问题反复检索相近词。",
+    "检索无结果或相关度低时，明确说不确定，不要编造术语或译名。",
+    "工具返回的是候选，不是最终答案；涉及法律、剂量、诊断时必须提示由专业人员复核。"
+  ]
+}
